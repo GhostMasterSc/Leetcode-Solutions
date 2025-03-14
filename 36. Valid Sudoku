@@ -1,0 +1,37 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        for i in range(9):
+            uniq = set()
+            for j in range(9):
+                if board[i][j] in uniq:
+                    return False
+                elif board[i][j]!=".":
+                    uniq.add(board[i][j])
+
+        
+        for j in range(9):
+            uniq = set()
+            for i in range(9):
+                if board[i][j] in uniq:
+                    return False
+                elif board[i][j]!=".":
+                    uniq.add(board[i][j])
+
+        start = 0
+        for x in range(3):
+            second = 0
+            for y in range(3):
+                uniq = set()
+                for i in range(start,start+3):
+                    for j in range(second,second+3):
+                        if board[i][j] in uniq:
+                            return False
+                        elif board[i][j]!=".":
+                            uniq.add(board[i][j])
+                second+=3
+            start+=3
+                
+        return True
+
+                
+        
